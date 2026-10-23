@@ -1,0 +1,9 @@
+<app-head-bar></app-head-bar>
+<app-search-bar [cars]="autoList" (onSeeMore)="seeMore($event)"></app-search-bar>
+
+@if (selectedCar) {
+  {{selectedCar.model}} <br>
+  <p>{{selectedCar.description}}</p>
+}
+
+

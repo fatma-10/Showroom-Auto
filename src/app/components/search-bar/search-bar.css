@@ -1,0 +1,178 @@
+/* ===== SEARCH BAR ===== */
+.header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 280px;
+    max-width: calc(100% - 30px);
+    box-sizing: border-box;
+    margin: 15px auto 0;
+    padding: 8px 14px;
+    border: 1px solid #350254;
+    border-radius: 25px;
+    background: white;
+    transition: box-shadow 0.3s, border-color 0.3s;
+}
+
+.header:focus-within {
+    border-color: rgb(228, 138, 225);
+    box-shadow: 0 0 0 3px rgba(228, 138, 225, 0.2);
+}
+
+.header label {
+    flex-shrink: 0;
+    font-weight: bold;
+    color: #350254;
+    font-size: 14px;
+}
+
+.header input {
+    flex: 1;
+    min-width: 0;
+    padding: 5px 0;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #350254;
+    font-size: 14px;
+}
+
+.header input::placeholder {
+    color: #999;
+}
+
+.header fa-icon {
+    flex-shrink: 0;
+    color: rgb(228, 138, 225);
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.header fa-icon:hover {
+    color: #350254;
+}
+
+/* ===== CARS GRID ===== */
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 25px;
+    padding: 25px 35px;
+    max-width: 1400px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+/* ===== CAR CARD ===== */
+.auto-card {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    background: white;
+    padding: 16px;
+    border: 1px solid #eee;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(53, 2, 84, 0.12);
+    transition: transform 0.3s, box-shadow 0.3s;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.auto-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(53, 2, 84, 0.22);
+}
+
+.auto-card img {
+    display: block;
+    width: 100%;
+    height: 155px;
+    object-fit: contain;
+    margin-bottom: 15px;
+}
+
+/* IMPORTANT: matches your HTML class="details" */
+.details {
+    flex: 1;
+    padding: 0 3px;
+}
+
+.details h3 {
+    color: #350254;
+    font-size: 16px;
+    margin: 8px 0 12px;
+    min-height: 38px;
+}
+
+.details p {
+    color: #555;
+    font-size: 14px;
+    line-height: 1.8;
+    margin: 0;
+}
+
+/* ===== SEE MORE BUTTON ===== */
+.see_more {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.see_more button {
+    background: #350254;
+    color: white;
+    border: none;
+    padding: 9px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background 0.3s, box-shadow 0.3s;
+}
+
+.see_more button:hover {
+    background: rgb(228, 138, 225);
+    box-shadow: 0 4px 10px rgba(53, 2, 84, 0.2);
+}
+
+/* ===== TABLETS AND MOBILE ===== */
+@media (max-width: 600px) {
+    .container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        padding: 15px;
+    }
+
+    .auto-card {
+        padding: 10px;
+        border-radius: 12px;
+    }
+
+    .auto-card img {
+        height: 110px;
+        margin-bottom: 8px;
+    }
+
+    .details h3 {
+        font-size: 14px;
+        min-height: 34px;
+    }
+
+    .details p {
+        font-size: 12px;
+        line-height: 1.6;
+    }
+
+    .see_more {
+        margin-top: 10px;
+    }
+
+    .see_more button {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 350px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+}

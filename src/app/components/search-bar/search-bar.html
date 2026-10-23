@@ -1,0 +1,26 @@
+<div class="header">
+    <label>Brand</label>
+    <input type="text" #brand
+    (input)="selectAutos(brand.value)">
+    <fa-icon [icon]="faMagnifyingGlass"/>
+</div>
+
+<div class="container">
+  <!-- ay haja precédé par @ c'est un decorateur, c'est un mot clé qui permet de dire à angular que ce qui suit est un composant, une directive ou un pipe -->
+  @for(auto of selectedAutos; track auto.id){
+    <div class="auto-card">
+      <img [src]="`images/${auto.photo}`">
+      <div class="details">
+        <h3>{{auto.brand}} {{auto.model}}</h3>
+        <p>
+          Power: {{auto.power}} ch <br>
+          Price: {{auto.price}} DNT <br>
+          Only {{auto.availability}} units in stock <br>
+        </p>
+      </div>
+      <div class="see_more">
+        <button (click)="seeMore(auto)">See More...</button>
+      </div>
+    </div>
+  }   
+</div>
