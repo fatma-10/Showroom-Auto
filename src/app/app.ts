@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
-import {HeadBar} from './components/head-bar/head-bar';
-import {SearchBar} from './components/search-bar/search-bar';
+import { HeadBar } from './components/head-bar/head-bar';
+import { SearchBar } from './components/search-bar/search-bar';
 import { Auto } from './interfaces/auto';
 @Component({
   imports: [HeadBar, SearchBar],
@@ -15,12 +15,14 @@ export class App {
     this.title.set('My showroom');
   }
 
-  selectedCar!:Auto
+  selectedCar!: Auto;
   seeMore(car: Auto) {
     this.selectedCar = car;
   }
 
-  autoList:Auto[] = [
+  selectedBrand = '';
+
+  autoList: Auto[] = [
     {     
       id:1,
       brand: "Mercedes Benz",
@@ -182,4 +184,7 @@ export class App {
       description:"The Alfa Romeo Giulia is a premium sports sedan renowned for its elegant design, dynamic performance, and advanced technology. It is available with a range of engines, including a 280-horsepower turbocharged gasoline engine and 160- or 210-horsepower diesel options. The Giulia features a customizable 12.3-inch digital instrument cluster, an 8.8-inch touchscreen with navigation, and advanced driver assistance systems."
     }
   ];
+  get brands(): string[] {
+    return [...new Set(this.autoList.map(auto => auto.brand))].sort();
+  }
 }

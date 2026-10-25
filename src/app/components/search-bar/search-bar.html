@@ -1,26 +1,84 @@
-<div class="header">
-    <label>Brand</label>
-    <input type="text" #brand
-    (input)="selectAutos(brand.value)">
-    <fa-icon [icon]="faMagnifyingGlass"/>
-</div>
 
-<div class="container">
-  <!-- ay haja precédé par @ c'est un decorateur, c'est un mot clé qui permet de dire à angular que ce qui suit est un composant, une directive ou un pipe -->
-  @for(auto of selectedAutos; track auto.id){
-    <div class="auto-card">
-      <img [src]="`images/${auto.photo}`">
-      <div class="details">
-        <h3>{{auto.brand}} {{auto.model}}</h3>
-        <p>
-          Power: {{auto.power}} ch <br>
-          Price: {{auto.price}} DNT <br>
-          Only {{auto.availability}} units in stock <br>
-        </p>
+@if (selectedCar; as car) {
+  <app-car-detail
+    [car]="car"
+    (onBack)="backToList()">
+  </app-car-detail>
+} @else {
+  <section class="collection-section">
+
+    <div class="search-toolbar">
+      <div class="search-box">
+        <fa-icon [icon]="faMagnifyingGlass"></fa-icon>
+
+        <input
+          type="text"
+          placeholder="Search by brand or model..."
+          [(ngModel)]="searchText"
+          (input)="applyFilters()"
+          aria-label="Search cars by brand or model">
       </div>
-      <div class="see_more">
-        <button (click)="seeMore(auto)">See More...</button>
+
+      <div class="filter-box">
+        <app-filter
+          [brands]="brands"
+          [selectedBrand]="selectedBrand"
+          [sortOrder]="sortOrder"
+          (selectedBrandChange)="onBrandFilterChange($event)"
+          (sortOrderChange)="onPriceSortChange($event)">
+        </app-filter>
       </div>
     </div>
-  }   
-</div>
+
+    <div class="auto-list">
+      @for (auto of selectedAutos; track auto.id) {
+        <article class="auto-card">
+          <div class="auto-image">
+            <img
+              [src]="'images/' + auto.photo"
+              [alt]="auto.brand + ' ' + auto.model"
+              loading="lazy">
+          </div>
+
+          <div class="auto-info">
+            <p class="auto-brand">{{ auto.brand }}</p>
+            <h3>{{ auto.model }}</h3>
+
+            <div class="auto-specs">
+              <span>{{ auto.power }} ch</span>
+              <span>{{ auto.availability }} available</span>
+            </div>
+
+            <div class="auto-card-footer">
+              <p class="auto-price">
+                {{ auto.price }} <span>DT</span>
+              </p>
+
+              <button
+                type="button"
+                class="details-button"
+                (click)="seeMore(auto)">
+                See details
+                <span aria-hidden="true">→</span>
+              </button>
+            </div>
+          </div>
+        </article>
+      } @empty {
+        <div class="no-results">
+          <fa-icon [icon]="faMagnifyingGlass"></fa-icon>
+          <h3>No cars found</h3>
+          <p>Try another search term or select a different brand.</p>
+
+          <button
+            type="button"
+            class="reset-search"
+            (click)="resetFilters()">
+            Clear search and filters
+          </button>
+        </div>
+      }
+    </div>
+
+  </section>
+}

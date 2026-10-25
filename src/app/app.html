@@ -1,9 +1,12 @@
-<app-head-bar></app-head-bar>
-<app-search-bar [cars]="autoList" (onSeeMore)="seeMore($event)"></app-search-bar>
 
-@if (selectedCar) {
-  {{selectedCar.model}} <br>
-  <p>{{selectedCar.description}}</p>
-}
+<app-head-bar
+  [brands]="brands"
+  [selectedBrand]="selectedBrand"
+  (brandSelected)="selectedBrand = $event">
+</app-head-bar>
 
-
+<app-search-bar
+  [cars]="autoList"
+  [selectedBrand]="selectedBrand"
+  (selectedBrandChange)="selectedBrand = $event">
+</app-search-bar>

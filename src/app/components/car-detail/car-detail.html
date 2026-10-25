@@ -1,0 +1,42 @@
+
+<section class="car-detail">
+  <div class="detail-image">
+    <img
+      [src]="'images/' + car.photo"
+      [alt]="car.brand + ' ' + car.model"
+    />
+  </div>
+
+  <div class="detail-content">
+    <p class="detail-label">OUR SHOWROOM</p>
+
+    <h2>{{ car.brand }}</h2>
+    <h1>{{ car.model }}</h1>
+
+    <p class="detail-description">
+      {{ car.description }}
+    </p>
+
+    <div class="detail-specs">
+      <div class="spec">
+        <span>Price</span>
+        <strong>{{ car.price }} DT</strong>
+      </div>
+
+      <div class="spec">
+        <span>Power</span>
+        <strong>{{ car.power }} ch</strong>
+      </div>
+
+      <div class="spec">
+        <span>Availability</span>
+        <strong>{{ car.availability }}</strong>
+      </div>
+    </div>
+
+    <button type="button" (click)="onBack.emit()">
+      ← Back to Showroom
+    </button>
+  </div>
+</section>
+

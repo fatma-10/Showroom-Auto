@@ -1,0 +1,31 @@
+<div class="filter-controls">
+  <div class="filter-group">
+    <label for="brandFilter">Filter by brand</label>
+
+    <select
+      id="brandFilter"
+      [ngModel]="selectedBrand"
+      (ngModelChange)="onBrandChange($event)"
+    >
+      <option value="">All brands</option>
+
+      @for (brand of brands; track brand) {
+        <option [value]="brand">{{ brand }}</option>
+      }
+    </select>
+  </div>
+
+  <div class="filter-group">
+    <label for="priceSort">Sort by price</label>
+
+    <select
+      id="priceSort"
+      [ngModel]="sortOrder"
+      (ngModelChange)="onSortChange($event)"
+    >
+      <option value="">Default order</option>
+      <option value="priceAsc">Lowest to highest</option>
+      <option value="priceDesc">Highest to lowest</option>
+    </select>
+  </div>
+</div>

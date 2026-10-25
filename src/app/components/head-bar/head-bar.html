@@ -1,3 +1,112 @@
-<div class="header">
-  <h1>Welcome to My Showroom</h1>
-</div>
+<header class="showroom-header">
+    <div class="header-particles">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <div class="header-content">
+    <span class="eyebrow">YOUR JOURNEY STARTS HERE</span>
+
+    <h1>
+      Discover Your
+      <span>Dream Car</span>
+    </h1>
+
+    <p class="subtitle">
+      Explore the collection and find the car that fits your lifestyle.
+    </p>
+
+    <div class="header-decoration">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+
+  <div class="header-art-wrap">
+    <svg class="header-art" viewBox="0 0 480 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- fender / hood sweep -->
+  <path d="M0,40 C90,-5 190,8 255,42 C298,62 322,78 336,96" stroke="#e48ae1" stroke-width="2.5"/>
+  <path d="M0,70 C100,38 200,52 265,88 C300,106 318,118 332,132" stroke="#e48ae1" stroke-width="1.2" opacity="0.5"/>
+  <path d="M0,160 C55,112 112,108 152,122 C190,135 218,152 238,168" stroke="#e48ae1" stroke-width="1.2" opacity="0.4"/>
+
+  <!-- small reflection streaks -->
+  <path d="M40,25 Q150,2 275,55" stroke="#e48ae1" stroke-width="1" opacity="0.3"/>
+  <path d="M15,95 Q140,55 295,105" stroke="#e48ae1" stroke-width="1" opacity="0.25"/>
+
+  <!-- wheel arch + tire hint -->
+  <path d="M-10,150 C35,92 115,92 155,150" stroke="#e48ae1" stroke-width="2.5"/>
+  <path d="M-15,172 C30,235 115,235 158,178" stroke="#e48ae1" stroke-width="5" opacity="0.5"/>
+  <circle cx="60" cy="232" r="52" stroke="#e48ae1" stroke-width="1.5" opacity="0.6"/>
+  <circle cx="60" cy="232" r="20" stroke="#e48ae1" stroke-width="1.5" opacity="0.6"/>
+
+  <!-- small vent / badge detail -->
+  <line x1="8" y1="195" x2="42" y2="178" stroke="#e48ae1" stroke-width="1.5" opacity="0.6"/>
+  <circle cx="25" cy="187" r="3" stroke="#e48ae1" stroke-width="1.5" opacity="0.6"/>
+
+  <!-- chrome bumper -->
+  <path d="M165,232 C225,258 325,258 405,232 C435,221 462,206 480,188" stroke="#e48ae1" stroke-width="3"/>
+  <path d="M170,216 C228,237 322,237 398,213 C428,202 456,188 480,172" stroke="#e48ae1" stroke-width="1.2" opacity="0.5"/>
+
+  <!-- headlight, large + blinking -->
+  <g class="car-headlight">
+    <circle cx="345" cy="140" r="95" fill="rgba(228,138,225,0.06)" stroke="#e48ae1" stroke-width="3"/>
+    <circle cx="345" cy="140" r="83" stroke="#e48ae1" stroke-width="1.2" opacity="0.5"/>
+    <circle cx="345" cy="140" r="62" stroke="#e48ae1" stroke-width="2"/>
+
+    <!-- reflector facets -->
+    <line x1="345" y1="98" x2="345" y2="78" stroke="#e48ae1" stroke-width="1.5" opacity="0.7"/>
+    <line x1="380" y1="112" x2="398" y2="98" stroke="#e48ae1" stroke-width="1.5" opacity="0.7"/>
+    <line x1="394" y1="140" x2="416" y2="140" stroke="#e48ae1" stroke-width="1.5" opacity="0.7"/>
+    <line x1="380" y1="168" x2="398" y2="182" stroke="#e48ae1" stroke-width="1.5" opacity="0.7"/>
+    <line x1="310" y1="168" x2="292" y2="182" stroke="#e48ae1" stroke-width="1.5" opacity="0.5"/>
+    <line x1="310" y1="112" x2="292" y2="98" stroke="#e48ae1" stroke-width="1.5" opacity="0.5"/>
+
+    <!-- glass reflection arc -->
+    <path d="M300,100 A70,70 0 0 1 345,78" stroke="#e48ae1" stroke-width="1.2" opacity="0.6"/>
+
+    <circle class="car-headlight-core" cx="345" cy="140" r="9" fill="#e48ae1"/>
+  </g>
+</svg>
+  </div>
+</header>
+
+<section class="brand-banner" aria-label="Explore car brands">
+  <p class="brand-label">EXPLORE OUR BRANDS</p>
+
+  @if (brands.length > 0) {
+    <div class="brand-track-wrapper">
+      <div class="brand-track">
+        @for (brand of brands; track brand) {
+          <button
+            type="button"
+            class="brand-logo"
+            [class.active]="selectedBrand === brand"
+            [attr.aria-pressed]="selectedBrand === brand"
+            (click)="selectBrand(brand)"
+          >
+            {{ brand }}
+          </button>
+        }
+
+        @for (brand of brands; track 'repeat-' + brand) {
+          <button
+            type="button"
+            class="brand-logo"
+            [class.active]="selectedBrand === brand"
+            [attr.aria-pressed]="selectedBrand === brand"
+            (click)="selectBrand(brand)"
+            tabindex="-1"
+            aria-hidden="true"
+          >
+            {{ brand }}
+          </button>
+        }
+      </div>
+    </div>
+  } @else {
+    <p class="brand-empty">Our brands will appear here soon.</p>
+  }
+</section>

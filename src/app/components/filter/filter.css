@@ -1,0 +1,97 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.filter-controls {
+  display: flex;
+  align-items: end;
+  gap: 14px;
+  width: 100%;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.filter-group {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.filter-group label {
+  color: #350254;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.filter-group select {
+  width: 100%;
+  min-height: 46px;
+  padding: 0 34px 0 14px;
+  border: 1px solid #e5d9eb;
+  border-radius: 12px;
+  background-color: #fff;
+  color: #350254;
+  font-family: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  outline: none;
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    background-color 0.25s ease;
+}
+
+.filter-group select:hover {
+  border-color: #b98acb;
+}
+
+.filter-group select:focus {
+  border-color: #e48ae1;
+  box-shadow: 0 0 0 3px rgba(228, 138, 225, 0.18);
+}
+
+.filter-group select option {
+  color: #350254;
+  background-color: #fff;
+}
+
+@media (max-width: 700px) {
+  .filter-controls {
+    gap: 10px;
+  }
+
+  .filter-group label {
+    font-size: 11px;
+  }
+
+  .filter-group select {
+    padding-left: 10px;
+    padding-right: 24px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .filter-controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .filter-group {
+    width: 100%;
+  }
+
+  .filter-group label {
+    font-size: 12px;
+  }
+
+  .filter-group select {
+    min-height: 44px;
+    font-size: 13px;
+  }
+}

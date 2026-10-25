@@ -1,9 +1,21 @@
-import { Component } from '@angular/core';
 
-@Component({ //decaroteur
-  imports: [],//contient les composants utilisés dans le composant courant
-  selector: 'app-head-bar',//nom du composant, il sera utilisé dans le html comme une balise <app-head-bar></app-head-bar> integr' dans le composant parent
-  styleUrl: './head-bar.css',//chemin vers le fichier css du composant
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+
+@Component({
+  selector: 'app-head-bar',
+  imports: [],
   templateUrl: './head-bar.html',
+  styleUrl: './head-bar.css',
 })
-export class HeadBar {}
+export class HeadBar {
+  @Input() brands: string[] = [];
+  @Input() selectedBrand = '';
+
+  @Output() brandSelected = new EventEmitter<string>();
+
+  selectBrand(brand: string) {
+    this.brandSelected.emit(
+      this.selectedBrand === brand ? '' : brand
+    );
+  }
+}
